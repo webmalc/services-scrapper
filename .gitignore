@@ -4,6 +4,8 @@
 *.dll
 *.so
 *.dylib
+*.db
+*.app
 
 # Test binary, built with `go test -c`
 *.test
@@ -13,3 +15,17 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+# Project
+.vscode
+.history
+godepgraph.png
+config/*.yml
+common/config/yaml/*.yml
+!common/config/yaml/config.dist.yml
+!common/config/yaml/config.test.yml
+
+logs/*
+!logs/.gitkeep
+sql/*
+!sql/.gitkeep

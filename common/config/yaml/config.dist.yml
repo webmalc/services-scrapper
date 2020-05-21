@@ -1,0 +1,4 @@
+log_path: logs/app.log
+is_prod: true
+database_type: sqlite3
+database_uri: sql/ss.db
