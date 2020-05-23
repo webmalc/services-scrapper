@@ -3,7 +3,7 @@
 package main
 
 import (
-	"github.com/webmalc/services-scrapper/common/cmd"
+	"github.com/webmalc/services-scrapper/cmd"
 	"github.com/webmalc/services-scrapper/common/config"
 	"github.com/webmalc/services-scrapper/common/db"
 	"github.com/webmalc/services-scrapper/common/logger"

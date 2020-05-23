@@ -15,6 +15,5 @@ require (
 	github.com/sirupsen/logrus v1.6.0
 	github.com/spf13/cobra v1.0.0
 	github.com/spf13/viper v1.7.0
-	github.com/webmalc/it-stats-backend v0.0.0-20200504170139-1c74db794f4b
 	golang.org/x/sys v0.0.0-20200519105757-fe76b779f299 // indirect
 )

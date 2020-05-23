@@ -7,7 +7,7 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"github.com/webmalc/services-scrapper/common/cmd/mocks"
+	"github.com/webmalc/services-scrapper/cmd/mocks"
 	"github.com/webmalc/services-scrapper/common/test"
 )
 
