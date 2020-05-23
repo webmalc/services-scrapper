@@ -16,5 +16,4 @@ require (
 	github.com/spf13/cobra v1.0.0
 	github.com/spf13/viper v1.7.0
 	golang.org/x/sys v0.0.0-20200519105757-fe76b779f299 // indirect
-	gopkg.in/go-playground/assert.v1 v1.2.1
 )
