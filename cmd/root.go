@@ -1,22 +1,21 @@
 package cmd
 
 import (
-	"fmt"
-
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
 )
 
 // CommandRouter is the main commands router.
 type CommandRouter struct {
-	logger  ErrorLogger
-	rootCmd *cobra.Command
-	config  *Config
+	logger          ErrorLogger
+	rootCmd         *cobra.Command
+	config          *Config
+	scrappersRunner Runner
 }
 
 // server runs server.
 func (r *CommandRouter) scrap(cmd *cobra.Command, args []string) {
-	fmt.Println(args)
+	r.scrappersRunner.Run(args)
 }
 
 // Run the router.
@@ -37,10 +36,11 @@ func (r *CommandRouter) Run() {
 }
 
 // NewCommandRouter creates a new CommandRouter.
-func NewCommandRouter(log ErrorLogger) CommandRouter {
+func NewCommandRouter(log ErrorLogger, r Runner) CommandRouter {
 	return CommandRouter{
-		config:  NewConfig(),
-		logger:  log,
-		rootCmd: &cobra.Command{Use: "ss.app"},
+		config:          NewConfig(),
+		logger:          log,
+		rootCmd:         &cobra.Command{Use: "ss.app"},
+		scrappersRunner: r,
 	}
 }

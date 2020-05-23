@@ -14,7 +14,8 @@ import (
 // Should run the root command and log an error.
 func TestCommandRouter_Run(t *testing.T) {
 	m := &mocks.ErrorLogger{}
-	cr := NewCommandRouter(m)
+	r := &mocks.Runner{}
+	cr := NewCommandRouter(m, r)
 	os.Args = []string{"invalid", "invalid"}
 	m.On("Error", mock.Anything).Return(nil).Once()
 	cr.Run()
@@ -24,14 +25,20 @@ func TestCommandRouter_Run(t *testing.T) {
 // Should create a command router object.
 func TestNewCommandRouter(t *testing.T) {
 	m := &mocks.ErrorLogger{}
-	cr := NewCommandRouter(m)
+	r := &mocks.Runner{}
+	cr := NewCommandRouter(m, r)
 	assert.Equal(t, m, cr.logger)
+	assert.Equal(t, r, cr.scrappersRunner)
 	assert.NotNil(t, cr.rootCmd)
 }
 
-func TestCommandRouter_server(t *testing.T) {
-	cr := NewCommandRouter(&mocks.ErrorLogger{})
-	cr.scrap(&cobra.Command{}, make([]string, 0))
+func TestCommandRouter_scrap(t *testing.T) {
+	r := &mocks.Runner{}
+	cr := NewCommandRouter(&mocks.ErrorLogger{}, r)
+	args := []string{"kijiji", "yandex"}
+	r.On("Run", args).Return(nil).Once()
+	cr.scrap(&cobra.Command{}, args)
+	r.AssertExpectations(t)
 }
 
 // Setups the tests.
