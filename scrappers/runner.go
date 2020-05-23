@@ -1,11 +1,11 @@
 package scrappers
 
-// ScrappersRunner is the scrappers runner.
+// Runner is the scrappers runner.
 type Runner struct {
 	logger Logger
 }
 
-// Run run the scrappers.
+// Run runs the scrappers.
 func (r *Runner) Run(names []string) {
 	r.logger.Infof("Start the scrappers: %v", names)
 }
