@@ -7,8 +7,8 @@ GORUN=$(GOCMD) run .
 GOCOV=$(GOCMD) tool cover -html=coverage.out
 GOTEST=$(GOCMD) test -tags test
 GOGET=$(GOCMD) get
-GODEP=godepgraph -s -o github.com/webmalc/services-scrapper github.com/webmalc/services-scrapper | dot -Tpng -o godepgraph.png
-BINARY_NAME=it_stats.app
+GODEP=godepgraph -s -o  github.com/webmalc/services-scrapper github.com/webmalc/services-scrapper | dot -Tpng -o godepgraph.png
+BINARY_NAME=ss.app
 
 all: build
 
