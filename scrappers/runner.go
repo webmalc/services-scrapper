@@ -13,16 +13,16 @@ type Runner struct {
 // getScrappers get a list of scrappers to run
 func (r *Runner) getScrappers(names []string) []Scrapper {
 	result := make([]Scrapper, 0, len(r.scrappers))
-	if len(names) > 0 {
-		for _, id := range names {
-			if scrapper, ok := r.scrappers[id]; ok {
-				result = append(result, scrapper)
-			}
+	if len(names) == 0 {
+		for _, scrapper := range r.scrappers {
+			result = append(result, scrapper)
 		}
 		return result
 	}
-	for _, scrapper := range r.scrappers {
-		result = append(result, scrapper)
+	for _, id := range names {
+		if scrapper, ok := r.scrappers[id]; ok {
+			result = append(result, scrapper)
+		}
 	}
 	return result
 }
