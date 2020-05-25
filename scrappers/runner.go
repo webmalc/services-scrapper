@@ -1,11 +1,8 @@
 package scrappers
 
-import "sync"
-
-// Scrapper is the base scrapper.
-type baseScrapper struct {
-	ID string
-}
+import (
+	"sync"
+)
 
 // Runner is the scrappers runner.
 type Runner struct {
@@ -47,8 +44,8 @@ func NewRunner(log Logger) *Runner {
 	return &Runner{
 		logger: log,
 		scrappers: map[string]Scrapper{
-			kijijiID: NewKijiji(),
-			yandexID: NewYandex(),
+			kijijiID: NewKijiji(log),
+			yandexID: NewYandex(log),
 		},
 	}
 }

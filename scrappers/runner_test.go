@@ -37,11 +37,9 @@ func TestRunner_getScrappers(t *testing.T) {
 	runner := NewRunner(log)
 	scrappers := runner.getScrappers([]string{})
 	assert.Len(t, scrappers, 2)
-	assert.Equal(t, scrappers[0], NewKijiji())
 
 	scrappers = runner.getScrappers([]string{yandexID})
 	assert.Len(t, scrappers, 1)
-	assert.Equal(t, scrappers[0], NewYandex())
 }
 
 // Setups the tests.

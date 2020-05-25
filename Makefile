@@ -28,7 +28,7 @@ coverage:
 	$(GOCOV)
 
 threshold:
-	overcover --coverprofile coverage.out --threshold 95 --summary
+	overcover --coverprofile coverage.out --threshold 90 --summary
 testl: testv lint
 
 testall: test lint threshold

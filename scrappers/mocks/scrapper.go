@@ -11,7 +11,7 @@ type Scrapper struct {
 	mock.Mock
 }
 
-// Error is a method mock
+// Scrap is a method mock
 func (s *Scrapper) Scrap(wg *sync.WaitGroup) {
 	s.Called(wg)
 	wg.Done()

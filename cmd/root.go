@@ -23,7 +23,7 @@ func (r *CommandRouter) Run() {
 	r.rootCmd.AddCommand(
 		&cobra.Command{
 			Use:       "scrap",
-			Short:     "Run the scrapper",
+			Short:     "Run the scrappers",
 			Run:       r.scrap,
 			ValidArgs: r.config.scrappers,
 			Args:      cobra.OnlyValidArgs,
