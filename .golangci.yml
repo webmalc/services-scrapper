@@ -97,7 +97,7 @@ issues:
         - gocritic
     - linters:
         - lll
-      source: "`gorm.*"
+      source: "`.*"
 
 # run:
 #   skip-dirs:

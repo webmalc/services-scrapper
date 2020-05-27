@@ -15,8 +15,8 @@ func main() {
 	config.Setup()
 	log := logger.NewLogger()
 	conn := db.NewConnection()
-	models.Migrate(conn)
 	defer conn.Close()
+	models.Migrate(conn)
 	cmdRouter := cmd.NewCommandRouter(log, scrappers.NewRunner(log))
 	cmdRouter.Run()
 }

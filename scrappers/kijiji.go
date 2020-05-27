@@ -7,7 +7,7 @@ import (
 const kijijiID = "kijiji"
 
 func processKijijiURL(url string, c *colly.Collector) {
-	/* complete the scrapping
+	/* Complete the scrapping
 	c.OnHTML("a.title", func(e *colly.HTMLElement) {
 		fmt.Println(e.Text)
 		serviceURL := e.Request.AbsoluteURL(e.Attr("href"))
