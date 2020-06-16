@@ -17,6 +17,6 @@ func (k *Yandex) Scrap(wg *sync.WaitGroup) {
 }
 
 // NewYandex creates a new Yandex instance.
-func NewYandex(log Logger) *Yandex {
+func NewYandex(log logger) *Yandex {
 	return &Yandex{baseScrapper: baseScrapper{id: yandexID, logger: log}}
 }

@@ -114,3 +114,16 @@ func TestServiceRepository_IsServiceWithURLExists(t *testing.T) {
 	assert.True(t, repo.IsServiceWithURLExists("http://unique.com"))
 	assert.False(t, repo.IsServiceWithURLExists("http://example.com"))
 }
+
+// Should append an image to a service
+func TestServiceRepository_AppendImage(t *testing.T) {
+	conn := db.NewConnection()
+	defer conn.Close()
+	Migrate(conn)
+	repo := NewServiceRepository(conn)
+	s := repo.NewService("http://example.com", "kijiji", "title")
+	repo.AppendImage("test image 1", s)
+	repo.AppendImage("test image 2", s)
+	assert.Equal(t, "test image 1", s.Images[0].Src)
+	assert.Equal(t, "test image 2", s.Images[1].Src)
+}

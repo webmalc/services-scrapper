@@ -17,6 +17,7 @@ func main() {
 	conn := db.NewConnection()
 	defer conn.Close()
 	models.Migrate(conn)
-	cmdRouter := cmd.NewCommandRouter(log, scrappers.NewRunner(log))
+	repo := models.NewServiceRepository(conn)
+	cmdRouter := cmd.NewCommandRouter(log, scrappers.NewRunner(log, repo))
 	cmdRouter.Run()
 }

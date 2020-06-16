@@ -6,13 +6,13 @@ import (
 
 // Runner is the scrappers runner.
 type Runner struct {
-	logger    Logger
-	scrappers map[string]Scrapper
+	logger    logger
+	scrappers map[string]scrapper
 }
 
 // getScrappers get a list of scrappers to run
-func (r *Runner) getScrappers(names []string) []Scrapper {
-	result := make([]Scrapper, 0, len(r.scrappers))
+func (r *Runner) getScrappers(names []string) []scrapper {
+	result := make([]scrapper, 0, len(r.scrappers))
 	if len(names) == 0 {
 		for _, scrapper := range r.scrappers {
 			result = append(result, scrapper)
@@ -40,11 +40,11 @@ func (r *Runner) Run(names []string) {
 }
 
 // NewRunner creates a new Runner instance.
-func NewRunner(log Logger) *Runner {
+func NewRunner(log logger, repo serviceRepository) *Runner {
 	return &Runner{
 		logger: log,
-		scrappers: map[string]Scrapper{
-			kijijiID: NewKijiji(log),
+		scrappers: map[string]scrapper{
+			kijijiID: NewKijiji(log, repo),
 			yandexID: NewYandex(log),
 		},
 	}

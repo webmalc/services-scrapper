@@ -45,6 +45,8 @@ type Service struct {
 	FirstName   string           `gorm:"type:varchar(255);"`
 	MiddleName  string           `gorm:"type:varchar(255);"`
 	LastName    string           `gorm:"type:varchar(255);"`
+	Country     string           `gorm:"type:varchar(255);"`
+	City        string           `gorm:"type:varchar(255);"`
 	Address     string           `gorm:"index:addr"`
 	Phones      []Phone          `gorm:"foreignkey:ServiceID"`
 	Emails      []Email          `gorm:"foreignkey:ServiceID"`

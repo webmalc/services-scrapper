@@ -33,6 +33,13 @@ func (r *ServiceRepository) IsServiceWithURLExists(url string) bool {
 	return count > 0
 }
 
+// AppendImage adds an image to the service.
+func (r *ServiceRepository) AppendImage(src string, service *Service) {
+	if src != "" {
+		service.Images = append(service.Images, Image{Src: src})
+	}
+}
+
 // ProcessName tries to get the first name and last name from the full name
 func (r *ServiceRepository) ProcessName(service *Service) {
 	const withMiddlename = 3

@@ -29,7 +29,9 @@ func Test_baseScrapper_Scrap(t *testing.T) {
 		id:     "test",
 		logger: log,
 		urls:   []string{"one", "two"},
-		processURL: func(url string, c *colly.Collector) {
+		processURL: func(
+			url string, c *colly.Collector, r serviceRepository,
+		) {
 			count++
 		},
 	}

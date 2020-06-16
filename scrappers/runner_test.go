@@ -12,10 +12,11 @@ import (
 // Should run the scrappers.
 func TestRunner_Run(t *testing.T) {
 	log := &mocks.Logger{}
-	runner := NewRunner(log)
+	repo := &mocks.ServiceRepository{}
+	runner := NewRunner(log, repo)
 	kijiji := &mocks.Scrapper{}
 	yandex := &mocks.Scrapper{}
-	runner.scrappers = map[string]Scrapper{kijijiID: kijiji, yandexID: yandex}
+	runner.scrappers = map[string]scrapper{kijijiID: kijiji, yandexID: yandex}
 	log.On("Infof", mock.Anything, mock.Anything).Return(nil).Once()
 	kijiji.On("Scrap", mock.Anything, mock.Anything).Return(nil).Once()
 	yandex.On("Scrap", mock.Anything, mock.Anything).Return(nil).Once()
@@ -26,7 +27,8 @@ func TestRunner_Run(t *testing.T) {
 // Should create a runner object.
 func TestNewRunner(t *testing.T) {
 	log := &mocks.Logger{}
-	runner := NewRunner(log)
+	repo := &mocks.ServiceRepository{}
+	runner := NewRunner(log, repo)
 	assert.Equal(t, runner.logger, log)
 	assert.Len(t, runner.scrappers, 2)
 }
@@ -34,7 +36,8 @@ func TestNewRunner(t *testing.T) {
 // Should return a list of scrappers
 func TestRunner_getScrappers(t *testing.T) {
 	log := &mocks.Logger{}
-	runner := NewRunner(log)
+	repo := &mocks.ServiceRepository{}
+	runner := NewRunner(log, repo)
 	scrappers := runner.getScrappers([]string{})
 	assert.Len(t, scrappers, 2)
 
