@@ -5,6 +5,7 @@ import (
 )
 
 const kijijiID = "kijiji"
+const kijijiCountry = "Canada"
 
 func processKijijiURL(url string, c *colly.Collector, repo serviceRepository) {
 	c.OnHTML("div#ViewItemPage", func(e *colly.HTMLElement) {
@@ -14,7 +15,7 @@ func processKijijiURL(url string, c *colly.Collector, repo serviceRepository) {
 			e.ChildText("h1[itemProp=name]"),
 		)
 		service.Description = e.ChildText("div[itemProp=description]")
-		service.Country = "Canada"
+		service.Country = kijijiCountry
 		service.City = e.ChildText("ul[class*=crumbList] li:first-child")
 		service.Address = e.ChildText("span[itemProp=address]")
 		repo.AppendImage(e.ChildAttr("img[itemProp=image]", "src"), service)

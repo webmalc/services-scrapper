@@ -44,8 +44,9 @@ func NewRunner(log logger, repo serviceRepository) *Runner {
 	return &Runner{
 		logger: log,
 		scrappers: map[string]scrapper{
-			kijijiID: NewKijiji(log, repo),
-			yandexID: NewYandex(log),
+			kijijiID:      NewKijiji(log, repo),
+			yellowpagesID: NewYellowpages(log, repo),
+			yandexID:      NewYandex(log),
 		},
 	}
 }

@@ -30,7 +30,7 @@ func TestNewRunner(t *testing.T) {
 	repo := &mocks.ServiceRepository{}
 	runner := NewRunner(log, repo)
 	assert.Equal(t, runner.logger, log)
-	assert.Len(t, runner.scrappers, 2)
+	assert.Len(t, runner.scrappers, 3)
 }
 
 // Should return a list of scrappers
@@ -39,7 +39,7 @@ func TestRunner_getScrappers(t *testing.T) {
 	repo := &mocks.ServiceRepository{}
 	runner := NewRunner(log, repo)
 	scrappers := runner.getScrappers([]string{})
-	assert.Len(t, scrappers, 2)
+	assert.Len(t, scrappers, 3)
 
 	scrappers = runner.getScrappers([]string{yandexID})
 	assert.Len(t, scrappers, 1)

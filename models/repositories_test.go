@@ -127,3 +127,31 @@ func TestServiceRepository_AppendImage(t *testing.T) {
 	assert.Equal(t, "test image 1", s.Images[0].Src)
 	assert.Equal(t, "test image 2", s.Images[1].Src)
 }
+
+// Should append a phone to a service
+func TestServiceRepository_AppendPhone(t *testing.T) {
+	conn := db.NewConnection()
+	defer conn.Close()
+	Migrate(conn)
+	repo := NewServiceRepository(conn)
+	s := repo.NewService("http://example.com", "kijiji", "title")
+	repo.AppendPhone("123456", s)
+	repo.AppendPhone("654321", s)
+	assert.Equal(t, "123456", s.Phones[0].Phone)
+	assert.Equal(t, "654321", s.Phones[1].Phone)
+}
+
+// Should append a link to a service
+func TestServiceRepository_AppendLink(t *testing.T) {
+	conn := db.NewConnection()
+	defer conn.Close()
+	Migrate(conn)
+	repo := NewServiceRepository(conn)
+	s := repo.NewService("http://example.com", "kijiji", "title")
+	repo.AppendLink("http://example.com", s)
+	repo.AppendLink("github.com", s)
+	repo.AppendLink("", s)
+	assert.Equal(t, "http://example.com", s.Links[0].URL)
+	assert.Equal(t, "http://github.com", s.Links[1].URL)
+	assert.Len(t, s.Links, 2)
+}

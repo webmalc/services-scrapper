@@ -40,6 +40,24 @@ func (r *ServiceRepository) AppendImage(src string, service *Service) {
 	}
 }
 
+// AppendPhone adds a phone to the service.
+func (r *ServiceRepository) AppendPhone(phone string, service *Service) {
+	if phone != "" {
+		service.Phones = append(service.Phones, Phone{Phone: phone})
+	}
+}
+
+// AppendLink adds a link to the service.
+func (r *ServiceRepository) AppendLink(url string, service *Service) {
+	if url == "" {
+		return
+	}
+	if !strings.HasPrefix(url, "http") {
+		url = "http://" + url
+	}
+	service.Links = append(service.Links, Link{URL: url})
+}
+
 // ProcessName tries to get the first name and last name from the full name
 func (r *ServiceRepository) ProcessName(service *Service) {
 	const withMiddlename = 3

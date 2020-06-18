@@ -48,6 +48,7 @@ type Service struct {
 	Country     string           `gorm:"type:varchar(255);"`
 	City        string           `gorm:"type:varchar(255);"`
 	Address     string           `gorm:"index:addr"`
+	Avatar      string           `gorm:"size:255;" valid:"url,optional"`
 	Phones      []Phone          `gorm:"foreignkey:ServiceID"`
 	Emails      []Email          `gorm:"foreignkey:ServiceID"`
 	Images      []Image          `gorm:"foreignkey:ServiceID"`

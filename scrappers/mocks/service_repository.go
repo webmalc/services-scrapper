@@ -36,3 +36,13 @@ func (s *ServiceRepository) IsServiceWithURLExists(url string) bool {
 func (s *ServiceRepository) AppendImage(src string, service *models.Service) {
 	s.Called(src, service)
 }
+
+// AppendPhone is a method phone
+func (s *ServiceRepository) AppendPhone(phone string, service *models.Service) {
+	s.Called(phone, service)
+}
+
+// AppendLink is a method mock
+func (s *ServiceRepository) AppendLink(url string, service *models.Service) {
+	s.Called(url, service)
+}

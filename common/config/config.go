@@ -26,7 +26,7 @@ func setDefaults(baseDir string) {
 	viper.Set("base_dir", filepath.Dir(filepath.Dir(baseDir))+"/")
 	viper.SetDefault("is_prod", false)
 	viper.SetDefault("log_path", "logs/app.log")
-	viper.SetDefault("scrappers", []string{"kijiji", "yandex"})
+	viper.SetDefault("scrappers", []string{"kijiji", "yandex", "yellowpages"})
 }
 
 // setPaths set paths

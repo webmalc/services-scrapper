@@ -12,27 +12,42 @@ import (
 	"github.com/webmalc/services-scrapper/scrappers/mocks"
 )
 
-// newTestServer return a new test server
-func newTestServer() *httptest.Server {
+// newTestServer run a test http server
+func newTestServer(index, next, service string) *httptest.Server {
 	mux := http.NewServeMux()
 
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		w.WriteHeader(200)
-		_, _ = w.Write([]byte(`<!DOCTYPE html>
+		w.WriteHeader(http.StatusOK)
+		_, _ = w.Write([]byte(index))
+	})
+
+	mux.HandleFunc("/next", func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusOK)
+		_, _ = w.Write([]byte(next))
+	})
+
+	mux.HandleFunc("/service", func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusOK)
+		_, _ = w.Write([]byte(service))
+	})
+
+	return httptest.NewServer(mux)
+}
+
+// newKijijiServer return a new test server
+func newKijijiServer() *httptest.Server {
+	return newTestServer(
+		`<!DOCTYPE html>
 <html>
 <head>
 <title>Kijiji</title>
 </head>
 <body>
-		<div class="pagination"><a href="/2" title="Next">Next</a></div>
+		<div class="pagination"><a href="/next" title="Next">Next</a></div>
 </body>
 </html>
-		`))
-	})
-
-	mux.HandleFunc("/2", func(w http.ResponseWriter, r *http.Request) {
-		w.WriteHeader(200)
-		_, _ = w.Write([]byte(`<!DOCTYPE html>
+		`,
+		`<!DOCTYPE html>
 <html>
 <head>
 <title>Kijiji</title>
@@ -41,12 +56,8 @@ func newTestServer() *httptest.Server {
 		<a href="/service" class="title"></a>
 </body>
 </html>
-		`))
-	})
-
-	mux.HandleFunc("/service", func(w http.ResponseWriter, r *http.Request) {
-		w.WriteHeader(200)
-		_, _ = w.Write([]byte(`<!DOCTYPE html>
+		`,
+		`<!DOCTYPE html>
 <html>
 <head>
 <title>Kijiji</title>
@@ -60,15 +71,13 @@ func newTestServer() *httptest.Server {
 	</div>
 </body>
 </html>
-		`))
-	})
-
-	return httptest.NewServer(mux)
+		`,
+	)
 }
 
 // Should parse a kijiji website.
 func Test_processKijijiURL(t *testing.T) {
-	ts := newTestServer()
+	ts := newKijijiServer()
 	conn := db.NewConnection()
 	defer ts.Close()
 	defer conn.Close()

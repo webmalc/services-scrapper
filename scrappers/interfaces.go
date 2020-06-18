@@ -24,6 +24,8 @@ type serviceRepository interface {
 	CreateService(service *models.Service) []error
 	IsServiceWithURLExists(url string) bool
 	AppendImage(src string, service *models.Service)
+	AppendPhone(phone string, service *models.Service)
+	AppendLink(url string, service *models.Service)
 }
 
 type urlProcessorType func(string, *colly.Collector, serviceRepository)
