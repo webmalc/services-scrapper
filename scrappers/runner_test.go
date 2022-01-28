@@ -30,7 +30,7 @@ func TestNewRunner(t *testing.T) {
 	repo := &mocks.ServiceRepository{}
 	runner := NewRunner(log, repo)
 	assert.Equal(t, runner.logger, log)
-	assert.Len(t, runner.scrappers, 3)
+	assert.Len(t, runner.scrappers, 4)
 }
 
 // Should return a list of scrappers
