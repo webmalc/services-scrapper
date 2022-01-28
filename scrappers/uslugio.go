@@ -15,7 +15,7 @@ const delay = 8 * time.Second
 type content struct {
 	Title  string
 	Text   string
-	Addres string
+	Addres string //nolint
 }
 
 type phone struct {
@@ -94,7 +94,7 @@ type Uslugio struct {
 	baseScrapper
 }
 
-// Uslugio creates a new uslugio instance.
+// NewUslugio creates a new uslugio instance.
 func NewUslugio(log logger, repo serviceRepository) *Uslugio {
 	config := NewConfig()
 	return &Uslugio{baseScrapper: baseScrapper{
