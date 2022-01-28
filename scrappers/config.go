@@ -9,6 +9,7 @@ type Config struct {
 	kijijiURLs      []string
 	yandexURLs      []string
 	yellowpagesURLs []string
+	uslugioURLs     []string
 }
 
 // setDefaults sets the default values
@@ -24,6 +25,9 @@ func setDefaults() {
 		"https://www.yellowpages.ca/search/si/1/massage/British+Columbia+BC",
 	})
 	viper.SetDefault("yandexURLs", []string{""})
+	viper.SetDefault("uslugioURLs", []string{
+		"https://uslugio.com/moskva",
+	})
 }
 
 // NewConfig returns the configuration object.
@@ -33,6 +37,7 @@ func NewConfig() *Config {
 		kijijiURLs:      viper.GetStringSlice("kijijiURLs"),
 		yandexURLs:      viper.GetStringSlice("yandexURLs"),
 		yellowpagesURLs: viper.GetStringSlice("yellowpagesURLs"),
+		uslugioURLs:     viper.GetStringSlice("uslugioURLs"),
 	}
 	return config
 }

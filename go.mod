@@ -14,6 +14,7 @@ require (
 	github.com/jinzhu/gorm v1.9.13
 	github.com/kennygrant/sanitize v1.2.4 // indirect
 	github.com/mattn/go-sqlite3 v2.0.3+incompatible // indirect
+	github.com/microcosm-cc/bluemonday v1.0.17
 	github.com/pkg/errors v0.9.1
 	github.com/qor/qor v0.0.0-20200224122013-457d2e3f50e1 // indirect
 	github.com/qor/validations v0.0.0-20171228122639-f364bca61b46
@@ -22,5 +23,4 @@ require (
 	github.com/spf13/cobra v1.0.0
 	github.com/spf13/viper v1.7.0
 	github.com/temoto/robotstxt v1.1.1 // indirect
-	golang.org/x/sys v0.0.0-20200615200032-f1bc736245b1 // indirect
 )

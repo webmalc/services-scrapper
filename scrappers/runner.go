@@ -47,6 +47,7 @@ func NewRunner(log logger, repo serviceRepository) *Runner {
 			kijijiID:      NewKijiji(log, repo),
 			yellowpagesID: NewYellowpages(log, repo),
 			yandexID:      NewYandex(log),
+			uslugioID:     NewUslugio(log, repo),
 		},
 	}
 }
